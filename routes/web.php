@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductItensController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('products.index');
 });
+
+Route::get('/produtos', [ProductController::class, 'index'])->name('products.index');
+Route::get('/produtos/{product}', [ProductController::class, 'show'])->name('products.show');
+
+Route::get('/itens', [ProductItensController::class, 'index'])->name('product-itens.index');
